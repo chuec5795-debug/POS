@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #cfb2f5;
+    background: linear-gradient(135deg, #303444, #2b3843);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -14,17 +14,20 @@ body {
 }
 
 .card {
-    background: #ffffff;
+    background: #4a5572;
     width: 100%;
     max-width: 440px;
     padding: 32px 30px;
     border-radius: 12px;
-    box-shadow: 0px 0px 15px #685371;
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 0px 20px #494f71;
 }
 
 .title {
     text-align: center;
-    color: #2b2b2b;
+    color: #fefdfd;
     font-size: 24px;
     font-weight: 700;
     margin-bottom: 24px;
@@ -39,7 +42,7 @@ label {
     display: inline-block;
     font-size: 13px;
     font-weight: 600;
-    color: #4a5568;
+    color: #f2f3f5;
     margin-bottom: 8px;
 }
 
@@ -51,7 +54,7 @@ label {
     width: 100%;
     padding: 10px 14px;
     border: 1px solid #e2e8f0;
-    border-radius: 6px;
+    border-radius: 15px;
     font-size: 14px;
     outline: none;
     color: #2d3748;
@@ -70,7 +73,7 @@ label {
 
 .forgotpassword {
     font-size: 13px;
-    color: #3182ce;
+    color: #73b2ee;
     text-decoration: none;
     font-weight: 500;
 }
@@ -82,13 +85,14 @@ label {
 .password-group {
     display: flex;
     border: 1px solid #e2e8f0;
-    border-radius: 6px;
+    border-radius: 15px;
     overflow: hidden;
 }
 
-.password-group input {
+.passwordform .password-group input {
+    width: 100%;
     padding: 10px 14px;
-    border: none;
+    border:none;
     outline: none;
     font-size: 14px;
     color: #2d3748;
@@ -105,7 +109,7 @@ label {
     background-color: #6366f1;
     color: #ffffff;
     border: none;
-    border-radius: 6px;
+    border-radius: 15px;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
@@ -126,7 +130,7 @@ label {
     flex: 1;
     padding: 10px 0;
     border: none;
-    border-radius: 6px;
+    border-radius: 15px;
     color: #ffffff;
     font-size: 13px;
     font-weight: 600;
@@ -134,17 +138,18 @@ label {
 }
 
 .role button:hover {
-    background-color: #7f8280;
+    background-color: #a8a1f4;
+    transition: background-color 0.2s;
 }
 
 .admin-btn {
-    background-color: #22c55e;
+    background-color: #6366f1;
 }
 
 .sales-btn {
-    background-color: #ef4444;
+    background-color: #6366f1;
 }
 
-.customer-btn {
-    background-color: #3b82f6;
+.manager-btn {
+     background-color: #6366f1;
 }
