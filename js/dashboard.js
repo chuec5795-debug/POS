@@ -2,6 +2,33 @@ document.addEventListener("DOMContentLoaded", function () {
   const mainContent = document.getElementById("main-content");
   const navLinks = document.querySelectorAll(".nav-link");
 
+  const currentUser = {
+    name:"Wai Lynn",
+    role:"sales"
+  };
+
+  const userNameEle = document.getElementById("userName");
+  const userRoleEle = document.getElementById("userRole");
+  if(userNameEle) userNameEle.innerHTML = currentUser.name;
+  if(userRoleEle) userRoleEle.innerHTML  = currentUser.role;
+
+function filterMenuByRole(userRole) {
+    const navItems = document.querySelectorAll(".nav-item");
+
+    navItems.forEach((item) => {
+      const allowedRoles = item.getAttribute("data-roles");
+
+      if (allowedRoles) {
+        const rolesArray = allowedRoles.split(",").map((r) => r.trim());
+        if (!rolesArray.includes(userRole)) {
+          item.style.display = "none";
+        } else {
+          item.style.display = "block";
+        }
+      }
+    });
+  }
+  filterMenuByRole(currentUser.role);
   function loadPage(pageUrl) {
     fetch(pageUrl)
       .then((response) => {

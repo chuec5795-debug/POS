@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>POS Table Display</title>
+
+    <link rel="stylesheet" href="css/pos.css">
+</head>
+
+<body>
+
+    <h1>🛒 Cashier POS Terminal</h1>
+    <p>Scan a barcode to add items to the cart table.</p>
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>Item Name</th>
+                <th>Price</th>
+                <th style="text-align: center;">Qty</th>
+                <th style="text-align: right;">Subtotal</th>
+            </tr>
+        </thead>
+        <tbody id="Table">
+            <tr>
+                <td colspan="4" style="text-align: center;">No items scanned yet. Click here and scan a barcode.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="total-box">
+        <h2 style="margin: 0;">Grand Total: $<span id="grandTotalDisplay">0.00</span></h2>
+    </div>
+
+    <button onclick="clearCart()">New Customer (Clear Cart)</button>
+
+
+    <script src="js/pc-pos.js"></script>
+</body>
+
+</html>
