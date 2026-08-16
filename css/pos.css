@@ -46,4 +46,40 @@ button {
     cursor: pointer;
     float: right;
     margin-top: 10px;
+    margin-left: 15px;
+}
+
+
+.btn-qty {
+    padding: 4px 10px;
+    font-size: 14px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn-qty:hover {
+    background-color: #2980b9;
+}
+
+.quantityDisplay {
+    margin: 0 8px;
+    font-weight: bold;
+}
+
+
+.btn-delete {
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
 }

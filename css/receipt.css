@@ -1,0 +1,84 @@
+body {
+    font-family: sans-serif;
+    background-color: #f4f6f9;
+    display: flex;
+    justify-content: center;
+}
+
+.receipt-container {
+    background-color: #FFF8C9;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 380px;
+}
+
+.store-header {
+    text-align: center;
+    border-bottom: 2px dashed #e2e8f0;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.store-name {
+    font-size: 22px;
+    font-weight: bold;
+    color: #2d3748;
+    margin: 0;
+}
+
+.receipt-date {
+    font-size: 13px;
+    color: #718096;
+    margin-top: 5px;
+}
+
+.item-list {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.item-list th {
+    text-align: left;
+    color: #2d3748;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+}
+
+.item-list td {
+    padding: 10px 0;
+    font-size: 14px;
+    color: #a0aec0;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.total-section {
+    background-color: #FCFBF4;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.total-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #4a5568;
+}
+
+.total-amount {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2b6cb0;
+}
+
+.thank-you {
+    text-align: center;
+    font-size: 13px;
+    color: #718096;
+}
