@@ -17,16 +17,52 @@
       </div>
 
     <ul class="nav-menu">
-      <li class="nav-item active"><a href="#" class="nav-link" data-page="dashboard-home.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
-      <li class="nav-item"><a href="#" class="nav-link"><i class="fa-solid fa-user-gear"></i> Accounts</a></li>
-      <li class="nav-item"><a href="#" class="nav-link" data-page="sales.html"><i class="fa-solid fa-chart-line"></i> Sales Update</a></li>
-      <li class="nav-item"><a href="#" class="nav-link"><i class="fa-solid fa-box"></i> Product List</a></li>
-      <li class="nav-item"><a href="#" class="nav-link"><i class="fa-solid fa-store"></i> Store List</a></li>
-      <li class="nav-item"><a href="#" class="nav-link"><i class="fa-solid fa-file-invoice"></i> Reports</a></li>
-      <li class="nav-item"><a href="#" class="nav-link"><i class="fa-solid fa-receipt"></i> Invoice</a></li>
-      <li class="nav-item"><a href="#" class="nav-link"><i class="fa-solid fa-folder-open"></i> Documents</a></li>
-      <li class="nav-item"><a href="#" class="nav-link"><i class="fa-solid fa-headset"></i> Support</a></li>
-      <li class="nav-item"><a href="#" class="nav-link" id="logoutbtn"><i class="fa-solid fa-right-from-bracketLogout"></i>Logout</a></li>
+        <li class="nav-item" data-roles="admin,manager">
+          <a href="#" class="nav-link" data-page="dashboard-home.html">
+            <i class="fa-solid fa-house"></i> Dashboard
+          </a>
+        </li>
+        <li class="nav-item" data-roles="admin">
+          <a href="#" class="nav-link" data-page="accounts.html">
+            <i class="fa-solid fa-user-gear"></i> Accounts
+          </a>
+        </li>
+        <li class="nav-item" data-roles="sales,admin,manager">
+          <a href="#" class="nav-link" data-page="sales.html">
+            <i class="fa-solid fa-chart-line"></i> Sales Update
+          </a>
+        </li>
+        <li class="nav-item" data-roles="admin,manager,sales">
+          <a href="#" class="nav-link" data-page="products.html">
+            <i class="fa-solid fa-box"></i> Product List
+          </a>
+        </li>
+        <li class="nav-item" data-roles="admin,manager">
+          <a href="#" class="nav-link" data-page="reports.html">
+            <i class="fa-solid fa-file-invoice"></i> Reports
+          </a>
+        </li>
+        <li class="nav-item" data-roles="admin,manager">
+          <a href="#" class="nav-link" data-page="invoice.html">
+            <i class="fa-solid fa-receipt"></i> Invoice
+          </a>
+        </li>
+        <li class="nav-item" data-roles="admin,manager">
+          <a href="#" class="nav-link" data-page="documents.html">
+            <i class="fa-solid fa-folder-open"></i> Documents
+          </a>
+        </li>
+        <li class="nav-item" data-roles="admin,manager">
+          <a href="#" class="nav-link" data-page="support.html">
+            <i class="fa-solid fa-headset"></i> Support
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" id="logoutbtn">
+            <i class="fa-solid fa-right-from-bracketLogout"></i>Logout
+          </a>
+        </li>
+      </ul>
     </ul>
     </aside>
 
@@ -37,5 +73,6 @@
     </main>
 
     <script src="js/dashboard.js"></script>
+    <script src="js/auth.js"></script>
   </body>
 </html>

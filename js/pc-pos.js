@@ -5,6 +5,9 @@ const inventory = {
   "8859819400578": { name: "အပ်မှို", price: 5000 },
   "8836000095294": { name: "လပ်ကီးခေါက်ဆွဲ", price: 3000 },
   "8996001354001": { name: "ချောကလက်မုန့်", price: 1500 },
+  "8851123237000": {name:"c-vitt",price:2500},
+  "8858152047617": {name:"chess cake",price:700},
+  "100035":{name:"ဖရုံစေ့", price:5000},
   "8850006944257": { name: "Tooth", price: 2000 },
 };
 
@@ -73,6 +76,9 @@ function renderCart() {
 
     let row = `<tr> 
       <td>${item.name}</td>
+      <td>$${item.price.toFixed(2)}</td>
+      <td style="text-align: center;">${item.quantity}</td>
+      <td style="text-align: right;">$${item.total.toFixed(2)}</td>
       <td>${item.price.toFixed(2)} Ks</td>
       <td style="text-align: center;">
         <button class="btn-qty" onclick="decreaseQuantity(${index})">-</button>
@@ -115,6 +121,12 @@ function deleteRow(index) {
 
 function clearCart() {
   cart = [];
+  document.getElementById("Table").innerHTML = `
+    <tr>
+      <td colspan="4" style="text-align: center;">No items scanned yet. Click here and scan a barcode.</td>
+    </tr>
+  `;
+  document.getElementById("grandTotalDisplay").textContent = "0.00";
   renderCart();
 }
 
@@ -139,7 +151,7 @@ function givingReceipt() {
   let jsonString = JSON.stringify(receiptObject);
   let encodedReceipt = btoa(encodeURIComponent(jsonString));
 
-  let computerIP = "192.168.1.10"; // အကိုတို့ laptop ရဲ့ IP address နဲ့ အစားထိုးလိုက်ပါ
+  let computerIP = ""; // အကိုတို့ laptop ရဲ့ IP address နဲ့ အစားထိုးလိုက်ပါ
   let port = window.location.port ? ":" + window.location.port : "";
   let receiptURL = "http://" + computerIP + port + window.location.pathname.replace("pc.html", "receipt.html") + "?data=" + encodedReceipt;
 

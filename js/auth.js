@@ -37,11 +37,10 @@ if (loginForm) {
         }
     });
 }
-
 function redirectToRolePage(role) {
     if (role === "admin" || role === "manager") {
-        window.location.href = "dashboard.html";
+        window.location.href = "dashboard.html"; 
     } else if (role === "sales") {
-        window.location.href = "sales.html";
+        window.location.href = "dashboard.html"; 
     }
 }
