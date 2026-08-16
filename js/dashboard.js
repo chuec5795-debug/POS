@@ -32,3 +32,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+    document.getElementById("logoutbtn").addEventListener("click", function() {
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("currentUser");
+        localStorage.removeItem("userRole");
+
+        window.location.href = "login.html";
+    });

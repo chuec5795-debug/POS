@@ -5,6 +5,7 @@ const inventory = {
   "8859819400578": { name: "အပ်မှို", price: 5000 },
   "8836000095294": { name: "လပ်ကီးခေါက်ဆွဲ", price: 3000 },
   "8996001354001": { name: "ချောကလက်မုန့်", price: 1500 },
+  "8850006944257": { name: "Tooth", price: 2000 },
 };
 
 let cart = [];
@@ -138,7 +139,7 @@ function givingReceipt() {
   let jsonString = JSON.stringify(receiptObject);
   let encodedReceipt = btoa(encodeURIComponent(jsonString));
 
-  let computerIP = "192.168.100.105"; // အကိုတို့ laptop ရဲ့ IP address နဲ့ အစားထိုးလိုက်ပါ
+  let computerIP = "192.168.1.2"; // အကိုတို့ laptop ရဲ့ IP address နဲ့ အစားထိုးလိုက်ပါ
   let port = window.location.port ? ":" + window.location.port : "";
   let receiptURL = "http://" + computerIP + port + window.location.pathname.replace("pc.html", "receipt.html") + "?data=" + encodedReceipt;
 
