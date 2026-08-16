@@ -33,10 +33,19 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-    document.getElementById("logoutbtn").addEventListener("click", function() {
-        localStorage.removeItem("isLoggedIn");
-        localStorage.removeItem("currentUser");
-        localStorage.removeItem("userRole");
+    const Logoutbtn = document.getElementById("logoutbtn");
+      if(Logoutbtn){
+        Logoutbtn.addEventListener("click",function (e){
+          e.preventDefault();
 
-        window.location.href = "login.html";
-    });
+          const isconfirmed = confirm("Are you sure want to logout?");
+
+          if(isconfirmed){
+            localStorage.removeItem("isLoggedIn");
+            localStorage.removeItem("currentUser");
+            localStorage.removeItem("userRole");
+
+            window.location.href = "login.html";
+          }
+        });
+      }
