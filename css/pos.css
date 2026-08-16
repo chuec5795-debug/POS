@@ -48,3 +48,39 @@ button {
     margin-top: 10px;
     margin-left: 15px;
 }
+
+/* Styling for + and - buttons */
+.btn-qty {
+    padding: 4px 10px;
+    font-size: 14px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn-qty:hover {
+    background-color: #2980b9;
+}
+
+/* Spacing for quantity number */
+.quantityDisplay {
+    margin: 0 8px;
+    font-weight: bold;
+}
+
+/* Styling for Delete button */
+.btn-delete {
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}

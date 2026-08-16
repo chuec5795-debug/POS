@@ -10,6 +10,7 @@ const inventory = {
 let cart = [];
 let buffer = "";
 
+// Barcode scanner listener
 window.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     processScan(buffer.trim());
@@ -26,59 +27,99 @@ function processScan(scannedBarcode) {
     let productquantityInput = prompt("Product found: " + product.name + "\nEnter quantity: ", "1");
     let quantity = parseInt(productquantityInput) || 1;
 
-    let totalPrice = product.price * quantity;
+    // Check if product already exists in cart
+    let existingItem = cart.find(item => item.name === product.name);
+    if (existingItem) {
+      existingItem.quantity += quantity;
+      existingItem.total = existingItem.price * existingItem.quantity;
+    } else {
+      cart.push({
+        name: product.name,
+        price: product.price,
+        quantity: quantity,
+        total: product.price * quantity
+      });
+    }
 
-    cart.push({
-      name: product.name,
-      price: product.price,
-      quantity: quantity,
-      total: totalPrice
-    });
-
-    updatecartDisplay();
+    renderCart(); 
   } else {
     alert("Barcode: " + scannedBarcode + "\nThis product is not found in inventory!");
   }
 }
 
-function updatecartDisplay() {
+
+function renderCart() {
   let tablebody = document.getElementById("Table");
   let TotalDisplay = document.getElementById("grandTotalDisplay");
-  tablebody.innerHTML = "";
 
+
+  if (cart.length === 0) {
+    tablebody.innerHTML = `
+      <tr>
+        <td colspan="5" style="text-align: center;">No items scanned yet. Click here and scan a barcode.</td>
+      </tr>
+    `;
+    if (TotalDisplay) TotalDisplay.textContent = "0.00 Ks";
+    return;
+  }
+
+  tablebody.innerHTML = "";
   let grandTotal = 0;
-  for (let i = 0; i < cart.length; i++) {
-    let item = cart[i];
+
+  cart.forEach((item, index) => {
+    item.total = item.price * item.quantity;
     grandTotal += item.total;
 
-    tablebody.innerHTML += `<tr>
+    let row = `<tr> 
       <td>${item.name}</td>
       <td>${item.price.toFixed(2)} Ks</td>
-      <td style="text-align: center;">${item.quantity}</td>
+      <td style="text-align: center;">
+        <button class="btn-qty" onclick="decreaseQuantity(${index})">-</button>
+        <span class="quantityDisplay" style="margin: 0 8px;">${item.quantity}</span>
+        <button class="btn-qty" onclick="increaseQuantity(${index})">+</button>
+      </td>
       <td style="text-align: right;">${item.total.toFixed(2)} Ks</td>
+      <td style="text-align: center;">
+        <button class="btn-delete" onclick="deleteRow(${index})">Delete</button>
+      </td>
     </tr>`;
+
+    tablebody.innerHTML += row;
+  });
+
+  if (TotalDisplay) {
+    TotalDisplay.textContent = grandTotal.toFixed(2) + " Ks";
   }
-  TotalDisplay.textContent = grandTotal.toFixed(2);
+}
+
+function increaseQuantity(index) {
+  cart[index].quantity += 1;
+  renderCart();
+}
+
+function decreaseQuantity(index) {
+  if (cart[index].quantity > 1) {
+    cart[index].quantity -= 1;
+  } else {
+    deleteRow(index);
+    return;
+  }
+  renderCart();
+}
+
+function deleteRow(index) {
+  cart.splice(index, 1);
+  renderCart();
 }
 
 function clearCart() {
   cart = [];
-  document.getElementById("Table").innerHTML = `
-    <tr>
-      <td colspan="4" style="text-align: center;">No items scanned yet. Click here and scan a barcode.</td>
-    </tr>
-  `;
-  document.getElementById("grandTotalDisplay").textContent = "0.00";
+  renderCart();
 }
-
 
 function closeReceipt() {
   document.getElementById("receiptModal").style.display = "none";
 }
-
-
-
-
 
 function givingReceipt() {
   if (cart.length === 0) {
@@ -86,10 +127,7 @@ function givingReceipt() {
     return;
   }
 
-  let grandTotal = 0;
-  for (let i = 0; i < cart.length; i++) {
-    grandTotal += cart[i].total;
-  }
+  let grandTotal = cart.reduce((sum, item) => sum + item.total, 0);
 
   let receiptObject = {
     date: new Date().toLocaleString(),
@@ -98,15 +136,12 @@ function givingReceipt() {
   };
 
   let jsonString = JSON.stringify(receiptObject);
-
   let encodedReceipt = btoa(encodeURIComponent(jsonString));
 
-  
   let computerIP = "192.168.100.105"; // အကိုတို့ laptop ရဲ့ IP address နဲ့ အစားထိုးလိုက်ပါ
   let port = window.location.port ? ":" + window.location.port : "";
   let receiptURL = "http://" + computerIP + port + window.location.pathname.replace("pc.html", "receipt.html") + "?data=" + encodedReceipt;
 
-  
   let qrcodeContainer = document.getElementById("qrcode");
   qrcodeContainer.innerHTML = "";
 
@@ -129,5 +164,5 @@ function givingReceipt() {
   }
 
   cart = [];
-  updatecartDisplay();
+  renderCart();
 }
