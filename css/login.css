@@ -146,19 +146,10 @@ label {
     cursor: pointer;
 }
 
-.role button:hover {
-    background-color: #a8a1f4;
-    transition: background-color 0.2s;
-}
 
-.admin-btn {
-    background-color: #6366f1;
-}
-
-.sales-btn {
-    background-color: #6366f1;
-}
-
-.manager-btn {
-     background-color: #6366f1;
+.role-option input {
+    width: 16px;
+    height: 16px;
+    accent-color: #6366f1; 
+    cursor: pointer;
 }

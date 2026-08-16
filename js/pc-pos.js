@@ -6,7 +6,8 @@ const inventory = {
   "8836000095294": { name: "လပ်ကီးခေါက်ဆွဲ", price: 3000 },
   "8996001354001": { name: "ချောကလက်မုန့်", price: 1500 },
   "8851123237000": {name:"c-vitt",price:2500},
-  "8858152047617": {name:"chess cake",price:700}
+  "8858152047617": {name:"chess cake",price:700},
+  "100035":{name:"ဖရုံစေ့", price:5000}
 };
 
 let cart = [];

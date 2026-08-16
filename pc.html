@@ -4,6 +4,7 @@
 <head>
     <title>POS Table Display</title>
 
+    <script src="js/qrcode.min.js"></script>
     <link rel="stylesheet" href="css/pos.css">
 </head>
 
@@ -34,6 +35,21 @@
     </div>
 
     <button onclick="clearCart()">New Customer (Clear Cart)</button>
+    <button class="btn btn-checkout" onclick="givingReceipt()">Finish & Get Digital Receipt</button>
+
+    <div id="receiptModal"
+        style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); align-items:center; justify-content:center;">
+        <div style="background:white; padding:30px; border-radius:10px; text-align:center; max-width:350px; width:90%;">
+            <h2>🧾 Digital Receipt</h2>
+            <p>Scan with your phone camera to view receipt!</p>
+
+
+            <div id="qrcode" style="display:flex; justify-content:center; margin:20px 0;"></div>
+
+            <button onclick="closeReceipt()"
+                style="padding:10px 20px; background:#e74c3c; color:white; border:none; border-radius:5px; cursor:pointer;">Close</button>
+        </div>
+    </div>
 
 
     <script src="js/pc-pos.js"></script>

@@ -2,9 +2,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const mainContent = document.getElementById("main-content");
   const navLinks = document.querySelectorAll(".nav-link");
 
+  const isLoginIn = localStorage.getItem("isLoggedIn");
+  if(isLoginIn !== "true"){
+    window.location.href = "login.html";
+    return;
+  }
+
+  const currentUserEmain = localStorage.getItem("currentUser")|| "user@gmail.com";
+  const currentUserRole = localStorage.getItem("userRole") || "guest";
+
   const currentUser = {
-    name:"Wai Lynn",
-    role:"sales"
+    name : currentUserEmain.split('@')[0],
+    role : currentUserRole
   };
 
   const userNameEle = document.getElementById("userName");
@@ -39,10 +48,15 @@ function filterMenuByRole(userRole) {
         mainContent.innerHTML = htmlData;
       })
       .catch((error) => {
-        mainContent.innerHTML = "<h2>404 - Content load လို့မရပါ!</h2>";
+        mainContent.innerHTML = "<h2>404 - Content load</h2>";
       });
   }
-  loadPage("dashboard-home.html");
+  
+if(currentUser.role === "sales"){
+    loadPage("sales.html"); // Sales ဝင်ရင် Sales မျက်နှာပြင်ကို ပထမဆုံးပြမည်
+  }else{
+    loadPage("dashboard-home.html"); // Admin/Manager ဝင်ရင် Home မျက်နှာပြင်ကို ပြမည်
+  }
 
   navLinks.forEach((link) => {
     link.addEventListener("click", function (e) {
