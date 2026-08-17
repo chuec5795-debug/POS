@@ -1,4 +1,3 @@
-
 const inventory = {
   "8886805705430": { name: "Fish Crackers", price: 7000 },
   "8859858300754": { name: "ပေါင်မုန့်", price: 2500 },
@@ -76,9 +75,6 @@ function renderCart() {
 
     let row = `<tr> 
       <td>${item.name}</td>
-      <td>$${item.price.toFixed(2)}</td>
-      <td style="text-align: center;">${item.quantity}</td>
-      <td style="text-align: right;">$${item.total.toFixed(2)}</td>
       <td>${item.price.toFixed(2)} Ks</td>
       <td style="text-align: center;">
         <button class="btn-qty" onclick="decreaseQuantity(${index})">-</button>
@@ -121,19 +117,60 @@ function deleteRow(index) {
 
 function clearCart() {
   cart = [];
-  document.getElementById("Table").innerHTML = `
-    <tr>
-      <td colspan="4" style="text-align: center;">No items scanned yet. Click here and scan a barcode.</td>
-    </tr>
-  `;
-  document.getElementById("grandTotalDisplay").textContent = "0.00";
   renderCart();
 }
 
 function closeReceipt() {
   document.getElementById("receiptModal").style.display = "none";
 }
+//solution 1
+// function givingReceipt() {
+//   if (cart.length === 0) {
+//     alert("NO Items Scanned Yet!");
+//     return;
+//   }
 
+//   let grandTotal = cart.reduce((sum, item) => sum + item.total, 0);
+
+//   let receiptObject = {
+//     date: new Date().toLocaleString(),
+//     items: cart,
+//     grandTotal: grandTotal
+//   };
+
+//   let jsonString = JSON.stringify(receiptObject);
+//   let encodedReceipt = btoa(encodeURIComponent(jsonString));
+
+ 
+// let ngrokBaseURL = "https://slow-results-enter.loca.lt"; // 👈 Your localtunnel URL
+// let receiptURL = ngrokBaseURL + window.location.pathname.replace("pc.html", "receipt.html") + "?data=" + encodedReceipt;
+
+//   let qrcodeContainer = document.getElementById("qrcode");
+//   qrcodeContainer.innerHTML = "";
+
+//   try {
+//     new QRCode(qrcodeContainer, {
+//       text: receiptURL,
+//       width: 220,
+//       height: 220,
+//       correctLevel: QRCode.CorrectLevel.L
+//     });
+//   } catch (error) {
+//     console.error("QR Code Error", error);
+//     alert("Error generating QR code!");
+//     return;
+//   }
+
+//   let modal = document.getElementById("receiptModal");
+//   if (modal) {
+//     modal.style.display = "flex";
+//   }
+
+//   cart = [];
+//   renderCart();
+// }
+
+//solution2
 function givingReceipt() {
   if (cart.length === 0) {
     alert("NO Items Scanned Yet!");
@@ -151,9 +188,11 @@ function givingReceipt() {
   let jsonString = JSON.stringify(receiptObject);
   let encodedReceipt = btoa(encodeURIComponent(jsonString));
 
-  let computerIP = "";
-  let port = window.location.port ? ":" + window.location.port : "";
-  let receiptURL = "http://" + computerIP + port + window.location.pathname.replace("pc.html", "receipt.html") + "?data=" + encodedReceipt;
+  // 1. Checks if config.js exists with a link.
+  // 2. If config.js isn't found, it defaults to whatever URL is in the browser bar.
+  let baseURL = window.LOCAL_TUNNEL_URL || window.location.origin;
+  
+  let receiptURL = baseURL + window.location.pathname.replace("pc.html", "receipt.html") + "?data=" + encodedReceipt;
 
   let qrcodeContainer = document.getElementById("qrcode");
   qrcodeContainer.innerHTML = "";
