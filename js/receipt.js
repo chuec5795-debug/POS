@@ -18,8 +18,11 @@ if (encodedData) {
     </tr>`
 
         });
+        document.getElementById("receiptSubtotal").innerHTML = receipt.totals.subtotal.toFixed(2) + 'Ks';
+        document.getElementById("receiptDiscount").innerHTML = '-' + receipt.totals.discountAmount.toFixed(2) + 'Ks';
+        document.getElementById("receiptTax").innerHTML = receipt.totals.taxAmount.toFixed(2) + 'Ks';
+        document.getElementById("receiptTotal").innerHTML = receipt.totals.grandTotal.toFixed(2) + 'Ks';
 
-        document.getElementById("receiptTotal").innerHTML = Number(receipt.grandTotal).toFixed(2) + 'Ks';
     }
     catch (e) {
         console.error("Invalid Receipt Data", e);

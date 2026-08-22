@@ -1,11 +1,18 @@
+/* --- Page Base & Centering --- */
 body {
     font-family: sans-serif;
     background-color: #f4f6f9;
     display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-.receipt-container {
+/* --- Receipt Card Wrapper --- */
+.receipt-card {
     background-color: #FFF8C9;
     padding: 25px;
     border-radius: 16px;
@@ -14,6 +21,7 @@ body {
     max-width: 380px;
 }
 
+/* --- Header Section --- */
 .store-header {
     text-align: center;
     border-bottom: 2px dashed #e2e8f0;
@@ -34,6 +42,7 @@ body {
     margin-top: 5px;
 }
 
+/* --- Items Table --- */
 .item-list {
     width: 100%;
     border-collapse: collapse;
@@ -51,10 +60,37 @@ body {
 .item-list td {
     padding: 10px 0;
     font-size: 14px;
-    color: #a0aec0;
+    color: #2d3748; /* High-contrast readable color */
     border-bottom: 1px solid #edf2f7;
 }
 
+/* --- Totals Summary Section (Subtotal, Discount, Tax) --- */
+.totals {
+    border-top: 2px dashed #e2e8f0;
+    padding-top: 15px;
+    margin-bottom: 15px;
+}
+
+.totals p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #4a5568;
+    margin: 6px 0;
+}
+
+.totals span {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+/* Red color highlight for discount */
+#receiptDiscount {
+    color: #e53e3e;
+}
+
+/* --- Grand Total Callout Box --- */
 .total-section {
     background-color: #FCFBF4;
     padding: 15px;
@@ -77,6 +113,7 @@ body {
     color: #2b6cb0;
 }
 
+/* --- Footer Note --- */
 .thank-you {
     text-align: center;
     font-size: 13px;
