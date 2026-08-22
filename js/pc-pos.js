@@ -9,6 +9,7 @@ const inventory = {
   "8858152047617": { name: "chess cake", price: 700 },
   "100035": { name: "ဖရုံစေ့", price: 5000 },
   "8850006944257": { name: "Tooth", price: 2000 },
+  "8850250000365": { name: "Coffee", price:5000}
 };
 
 let cart = [];
@@ -142,9 +143,9 @@ function givingReceipt() {
   let jsonString = JSON.stringify(receiptObject);
   let encodedReceipt = btoa(encodeURIComponent(jsonString));
 
-  let computerIP = ""; // အကိုတို့ laptop ရဲ့ IP address နဲ့ အစားထိုးလိုက်ပါ
-  let port = window.location.port ? ":" + window.location.port : "";
-  let receiptURL = "http://" + computerIP + port + window.location.pathname.replace("pc.html", "receipt.html") + "?data=" + encodedReceipt;
+  let baseURL = window.LOCAL_TUNNEL_URL || window.location.origin;
+  
+  let receiptURL = baseURL + window.location.pathname.replace("pc.html", "receipt.html") + "?data=" + encodedReceipt;
 
   let qrcodeContainer = document.getElementById("qrcode");
   qrcodeContainer.innerHTML = "";
