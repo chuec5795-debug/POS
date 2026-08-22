@@ -12,6 +12,10 @@ const inventory = {
   "8850250000365": { name: "Coffee", price:5000}
 };
 
+let baseURL = window.LOCAL_TUNNEL_URL || window.location.origin;
+
+let receiptURL = baseURL + window.location.pathname.replace("pc.html","receipt.html")+ "?data=" +encodedReceipt;
+
 let cart = [];
 let buffer = "";
 
@@ -173,9 +177,9 @@ function givingReceipt() {
   let jsonString = JSON.stringify(receiptObject);
   let encodedReceipt = btoa(encodeURIComponent(jsonString));
 
-  let baseURL = window.LOCAL_TUNNEL_URL || window.location.origin;
-
-  let receiptURL = baseURL + window.location.pathname.replace("pc.html", "receipt.html") + "?data=" + encodedReceipt;
+  let computerIP = "192.168.1.8"; 
+  let port = window.location.port ? ":" + window.location.port : "";
+  let receiptURL = "http://" + computerIP + port + window.location.pathname.replace("pc.html", "receipt.html") + "?data=" + encodedReceipt;
 
   let qrcodeContainer = document.getElementById("qrcode");
   qrcodeContainer.innerHTML = "";

@@ -1,0 +1,51 @@
+<div style="padding: 10px;">
+  <h2 style="margin-bottom: 5px; color: #2d3748; font-size: 35px;">Account Management</h2>
+  <p style="color: #718096; margin-bottom: 20px; font-size: 14px;">Setting user permissions</p>
+
+  <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 20px;">
+    
+    <div style="background: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); height: fit-content;">
+      <h3 style="margin-bottom: 15px; font-size: 24px; color: #2d3748;">Create New Account</h3>
+      <form id="addUserForm">
+        <div style="margin-bottom: 15px;">
+          <label style="display: block; margin-bottom: 5px; font-size: 13px; font-weight: 600;">Email</label>
+          <input type="email" id="accEmail" required placeholder="example@gmail.com" style="width: 100%; padding: 8px 10px; border: 1px solid #cbd5e0; border-radius: 6px; box-sizing: border-box;">
+        </div>
+        
+        <div style="margin-bottom: 15px;">
+          <label style="display: block; margin-bottom: 5px; font-size: 13px; font-weight: 600;">Password</label>
+          <input type="password" id="accPassword" required placeholder="••••••••" style="width: 100%; padding: 8px 10px; border: 1px solid #cbd5e0; border-radius: 6px; box-sizing: border-box;">
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; margin-bottom: 5px; font-size: 13px; font-weight: 600;">Role</label>
+          <select id="accRole" style="width: 100%; padding: 8px 10px; border: 1px solid #cbd5e0; border-radius: 6px; box-sizing: border-box;">
+            <option value="sales">Sales</option>
+            <option value="manager">Manager</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+
+        <button type="submit" style="width: 100%; background: #3182ce; color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600;">
+          Add Account 
+        </button>
+      </form>
+    </div>
+
+    <div style="background: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+      <h3 style="margin-bottom: 15px; font-size: 16px; color: #2d3748;">Current accounts list</h3>
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+        <thead>
+          <tr style="background: #f7fafc; text-align: left; border-bottom: 2px solid #edf2f7; color: #4a5568;">
+            <th style="padding: 10px;">Email</th>
+            <th style="padding: 10px;">Role</th>
+            <th style="padding: 10px; text-align: center;">Action</th>
+          </tr>
+        </thead>
+        <tbody id="userTableBody">
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
