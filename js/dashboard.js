@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (currentUser.role === "sales") {
-    loadPage("sales.html");
+    loadPage("pc.html");
   } else {
     loadPage("dashboard-home.html");
   }
