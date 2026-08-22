@@ -53,6 +53,27 @@ function processScan(scannedBarcode) {
 }
 
 
+function calculateTotals() {
+  let subtotal = cart.reduce((sum, item) => sum + item.total, 0);
+
+  let discountRate = 0.10;
+  let discountAmount = subtotal * discountRate;
+
+  let taxRate = 0.05;
+  let taxAmount = (subtotal - discountAmount) * taxRate;
+
+  let grandTotal = subtotal - discountAmount + taxAmount;
+
+  return {
+    subtotal: subtotal,
+    discountAmount: discountAmount,
+    taxAmount: taxAmount,
+    grandTotal: grandTotal
+  };
+}
+
+
+
 function renderCart() {
   let tablebody = document.getElementById("Table");
   let TotalDisplay = document.getElementById("grandTotalDisplay");
@@ -64,7 +85,11 @@ function renderCart() {
         <td colspan="5" style="text-align: center;">No items scanned yet. Click here and scan a barcode.</td>
       </tr>
     `;
-    if (TotalDisplay) TotalDisplay.textContent = "0.00 Ks";
+
+    document.getElementById("subtotalDisplay").textContent = "0.00 Ks";
+    document.getElementById("discountDisplay").textContent = "-0.00 Ks";
+    document.getElementById("taxDisplay").textContent = "0.00 Ks";
+    document.getElementById("grandTotalDisplay").textContent = "0.00 Ks";
     return;
   }
 
@@ -92,9 +117,12 @@ function renderCart() {
     tablebody.innerHTML += row;
   });
 
-  if (TotalDisplay) {
-    TotalDisplay.textContent = grandTotal.toFixed(2) + " Ks";
-  }
+  let totals = calculateTotals();
+  document.getElementById("subtotalDisplay").textContent = totals.subtotal.toFixed(2) + " Ks";;
+  document.getElementById("discountDisplay").textContent = "-" + totals.discountAmount.toFixed(2) + " Ks";
+  document.getElementById("taxDisplay").textContent = totals.taxAmount.toFixed(2) + " Ks";
+  document.getElementById("grandTotalDisplay").textContent = totals.grandTotal.toFixed(2) + " Ks";
+
 }
 
 function increaseQuantity(index) {
@@ -132,19 +160,21 @@ function givingReceipt() {
     return;
   }
 
-  let grandTotal = cart.reduce((sum, item) => sum + item.total, 0);
+  let totals = calculateTotals();
+  let paymentMethod = document.getElementById("paymentMethod").value;
 
   let receiptObject = {
     date: new Date().toLocaleString(),
     items: cart,
-    grandTotal: grandTotal
+    totals: totals,
+    paymentMethod: paymentMethod
   };
 
   let jsonString = JSON.stringify(receiptObject);
   let encodedReceipt = btoa(encodeURIComponent(jsonString));
 
   let baseURL = window.LOCAL_TUNNEL_URL || window.location.origin;
-  
+
   let receiptURL = baseURL + window.location.pathname.replace("pc.html", "receipt.html") + "?data=" + encodedReceipt;
 
   let qrcodeContainer = document.getElementById("qrcode");

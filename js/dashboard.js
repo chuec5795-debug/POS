@@ -53,7 +53,7 @@ function filterMenuByRole(userRole) {
   }
   
 if(currentUser.role === "sales"){
-    loadPage("sales.html"); // Sales ဝင်ရင် Sales မျက်နှာပြင်ကို ပထမဆုံးပြမည်
+    loadPage("pc.html"); // Sales ဝင်ရင် Sales မျက်နှာပြင်ကို ပထမဆုံးပြမည်
   }else{
     loadPage("dashboard-home.html"); // Admin/Manager ဝင်ရင် Home မျက်နှာပြင်ကို ပြမည်
   }
